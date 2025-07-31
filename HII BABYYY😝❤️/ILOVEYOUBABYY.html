@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy National Girlfriend Day</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffeef5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #b30059;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 48px;
+      margin-top: 30px;
+      color: #cc0066;
+    }
+
+    .photo-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .photo-row img {
+      width: 220px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .photo-row img:hover {
+      transform: scale(1.05);
+    }
+
+    .music-button {
+      background-color: #ff99bb;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .message {
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(6px);
+      padding: 25px 20px;
+      margin: 40px 30px;
+      border-radius: 15px;
+      font-size: 18px;
+      line-height: 1.7;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .animated-text {
+      position: fixed;
+      bottom: -40px;
+      font-size: 26px;
+      font-weight: bold;
+      color: #e60073;
+      font-family: 'Segoe Script', cursive;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    .animated-text-left {
+      left: 32%;
+    }
+
+    .animated-text-right {
+      right: 32%;
+    }
+
+    @keyframes scrollUpLeft {
+      0% {
+        bottom: -40px;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+    }
+
+    @keyframes scrollUpRight {
+      0% {
+        bottom: -40px;
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        bottom: 100vh;
+        opacity: 0;
+        transform: translateX(20px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy National Girlfriend Day</h1>
+
+  <div class="photo-row">
+    <img src="photo1.jpg" alt="Photo 1" />
+    <img src="photo2.jpg" alt="Photo 2" />
+    <img src="photo3.jpg" alt="Photo 3" />
+  </div>
+
+  <button class="music-button" onclick="document.getElementById('bg-music').play().catch(()=>alert('Audio failed to play'))">
+    Tap This Button To Hear Your Song😝❤️
+  </button>
+
+  <audio id="bg-music" preload="auto">
+    <source src="mykindofwomen.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="message">
+    Happy national girlfriend dayyyy. Remember that you are the bestt girlfriend in this universe — no, in every universe.
+    I’m glad that I’m your boyfriend and I hope I will be your BF foreverrrrrr. I love you so muchh babyyy — you mean so much to mee.
+    You're the prettiest, most gorgeous, most beautiful girlfriend I’ve ever seennnnnn. 💖
+    <br><br>
+    သိပ်ချစ်တယ် မမ — မောင့်နားမှာပဲအမြဲနေပေးပါနော်။
+    မောင်ကလဲမမနားပဲအမြဲရှိနေပေးမယ်လို့ကတိပေးမယ်။
+    မောင့်အမျိုးသမီးလေးကို သိပ်မြတ်နိုးတယ်။
+    ချစ်တယ်မမ။ မမဟာဘယ်လောက်ကောင်းကြောင်း ဘယ်လောက်ပြည့်စုံကြောင်း ပြောရင်မိုးလင်းသွားမှာဆိူးလို့ဒီမှာပဲရပ်လိုက်မယ်နော် 😝😝
+    <br><br>
+    စောက်ရမ်းချစ်တယ် — I LOVE YOU SO MUCHHH MWHH 💞
+  </div>
+
+  <!-- Animated scrolling texts -->
+  <div id="textLeft" class="animated-text animated-text-left">I LOVE MY GF</div>
+  <div id="textRight" class="animated-text animated-text-right">HAPPY NATIONAL GIRLFRIEND DAY</div>
+
+  <script>
+    const textLeft = document.getElementById('textLeft');
+    const textRight = document.getElementById('textRight');
+    const animationDuration = 1500;
+    const pauseDuration = 300;
+    let count = 0;
+    const maxCount = 6;
+
+    function animateText(element, animationName, callback) {
+      element.style.animation = 'none';
+      element.offsetHeight;
+      element.style.animation = `${animationName} ${animationDuration}ms linear forwards`;
+      element.style.opacity = '1';
+
+      setTimeout(() => {
+        element.style.opacity = '0';
+        element.style.animation = 'none';
+        callback();
+      }, animationDuration);
+    }
+
+    function loopAnimations() {
+      if (count >= maxCount) return;
+      animateText(textLeft, 'scrollUpLeft', () => {
+        setTimeout(() => {
+          animateText(textRight, 'scrollUpRight', () => {
+            count++;
+            setTimeout(loopAnimations, pauseDuration);
+          });
+        }, pauseDuration);
+      });
+    }
+
+    loopAnimations();
+  </script>
+
+</body>
+</html>
